@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>CoronaVirusTracker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+</head>
+
+<body>
+	<h1>Coronanavirus Tracker Application</h1>
+	<p>This Application lists the current number of cases reported</p>
+	<p th:text="${testName}"></p>
+	<div class="jumbotron">
+		<h1 class="display-4" th:text="${totalReportedCases}"></h1>
+		<h6>Total cases reported as of today</h6>
+		
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Country</th>
+				<th>Total Cases Reported</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${LocalStats.empty}">
+				<td colspan="2">No data Available</td>
+			</tr>
+			<tr th:each="Localstat : ${LocalStats}">
+				<td><span th:text="${Localstat.country}"> Country </span></td>
+				<td><span th:text="${Localstat.latestTotalCases}">
+						LastestTotalCases </span></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>
